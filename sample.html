@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Users Page</title>
+</head>
+<body>
+  <h1>Users</h1>
+  <ul id="users"></ul>
+
+  <script>
+    fetch('/users')
+      .then(res => res.json())
+      .then(users => {
+        const list = document.getElementById('users');
+        users.forEach(u => {
+          const li = document.createElement('li');
+          li.textContent = `${u.id}: ${u.email} (created: ${u.created_at})`;
+          list.appendChild(li);
+        });
+      })
+      .catch(console.error);
+  </script>
+</body>
+</html>
